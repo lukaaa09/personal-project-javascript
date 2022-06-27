@@ -34,7 +34,10 @@ const history = new Subject({
          return this.lms.has(data.id) 
         
     }
-    readAll() {
+    readAll(x) {
+        if (x !== undefined) {
+            throw new TypeError("error: do not pass the parameter");
+          }
         return [...this.lms.values()];
     }
 }

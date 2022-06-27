@@ -8,7 +8,7 @@ class Teachers {
             throw new TypeError("surname should be a string")
         }
         if (!teacher.hasOwnProperty("dateOfBirth") && typeof teacher.dateOfBirth !== "string") {
-            throw new TypeError("name should be a string")
+            throw new TypeError("dateofBirth should be a string")
         }
         if (!teacher.hasOwnProperty("emails") || typeof teacher.emails[0].email !== "string") {
             throw new TypeError("emails should be a string")
@@ -41,6 +41,9 @@ class Teachers {
         return id
     }
     read(id){
+        if (id === undefined) {
+            throw new TypeError("error:parameter is required");
+        }
         if(typeof id !== 'string'){
             throw new Error("id is reuired and should be a string")
         }else{
@@ -48,26 +51,40 @@ class Teachers {
         }
     }
     remove(id){
+        if (typeof id !== "string") {
+            throw new TypeError("error: parameter is not string");
+        }
+        if (!this.map.has(id)) {
+            throw new TypeError("id is not exist or invalid");
+        }
         this.map.delete(id)
     }
     update(id, updatedProfile){
+        if (id === undefined || updatedProfile === undefined) {
+            throw new TypeError("error: two parameters are required");
+        }
+        if (typeof id !== "string") {
+            throw new TypeError("error: first parameter is not string");
+        }    
         if(!this.map.has(id)){
             throw new Error("warnnig message")
         }
-        this.map.set(id, updatedProfile)
-        return id
+         let value = this.map.get(id);
+         value = { ...value, ...updatedProfile };  
+         this.map.set(id, updatedProfile)
+         return id
 
     }
 }
 const teachers = new Teachers()
 // console.log(teachers)
 const teacherId = teachers.add({name: "njdcnkd", phone: 1234});
-const teacherId3 = teachers.add({name: "lukaaa", phone: 1234});
+// const teacherId3 = teachers.add({name: "lukaaa", phone: 1234});
+// console.log(teachers)
+// console.log(teachers.read(teacherId));
+teachers.remove(teacherId)
 console.log(teachers)
-console.log(teachers.read(teacherId));
-// teachers.remove(teacherId)
-console.log(teachers)
-const teacherId2 = teachers.update(teacherId, {name: "luka", age: 24})
-console.log(teachers)
+// const teacherId2 = teachers.update(teacherId, {name: "luka", age: 24})
+// console.log(teachers)
 
 

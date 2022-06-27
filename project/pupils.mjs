@@ -1,0 +1,70 @@
+class Pupils{
+    pupilsDB = new Map()
+    validatePupil(pupils){
+        if (!pupils.hasOwnProperty("name") || typeof pupils.name.first !== "string") {
+            throw new TypeError("pupil hasn't property name or Firstname isn't a string")
+        }
+        if (!pupils.hasOwnProperty("name") || typeof pupils.name.last !== "string") {
+            throw new TypeError("pupil hasn't property name or surname isn't a string")
+        }    
+        if(!pupils.hasOwnProperty("dateOfBirth") || typeof pupils.dateOfBirt !== 'string'){
+            throw new TypeError("dateofBirth should be a string")
+        }
+        if (!pupils.hasOwnProperty("emails") || typeof pupils.emails[0].email !== "string") {
+            throw new TypeError("emails should be a string")
+        }
+        if (!pupils.hasOwnProperty("emails") || typeof pupils.emails[0].primary !== "boolean") {
+            throw new TypeError("primary should be a boolean")
+        }
+        if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "string") {
+            throw new TypeError("sex should be a string which will be male or famle field")
+        }
+        
+    }
+    constructor(){
+    }      
+    add(pupils){
+        const id = Math.floor(Math.random() * 12345678987654).toString()
+        this.pupilsDB.set(id, pupils);
+        return id
+        
+    }     
+    read(id){
+        if (id === undefined) {
+            throw new TypeError("error:parameter is required");
+        }
+         if(typeof id !== 'string'){
+            throw new Error("id is reuired and should be a string")
+        }else{
+            return {id, ...this.pupilsDB.get(id)}
+        }
+    }
+    remove(id){
+        if (typeof id !== "string") {
+            throw new TypeError("error: parameter is not string");
+          }
+        if (!this.map.has(id)) {
+            throw new TypeError("id is not exist or invalid");
+          }
+        this.pupilsDB.delete(id)
+    }
+    update(id, objUpdate){
+        if (id === undefined || objUpdate === undefined) {
+            throw new TypeError("error: two parameters are required");
+        }
+        if (typeof id !== "string") {
+            throw new TypeError("error: first parameter is not string");
+        }
+        if(!this.pupilsDB.has(id)){
+            throw new Error("warnnig message")
+        }
+        let arr = this.pupilsDB.get(id)
+        arr = {...arr, ...objUpdate}
+        this.pupilsDB.set(id, objUpdate)
+        return id
+    }
+}
+const pupils = new Pupils();
+const pupil = pupils.add({name: "luka", age: 19, country: "GE"});
+console.log(pupils)
+
