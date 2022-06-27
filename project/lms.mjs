@@ -1,4 +1,4 @@
-class Subject {
+export class Subject {
     validateSub(subject) {
         if (!subject.hasOwnProperty("title") || typeof subject.title !== 'string') {
             throw new Error("objects dosen't have a tittle or isn't a string");
@@ -22,12 +22,13 @@ const history = new Subject({
     title: 'History',
     lessons: 24
 });
- class LMS {
+export class LMS {
     lms = new Map();
     add(data) {
         this.lms.set(data.id, data);
     }
-    remove(data) {
+    remove(data) {       
+        if(!arguments.length) throw new Error('no argument in read method')
         this.lms.delete(data.id);
     }
     verify(data) {
@@ -42,7 +43,8 @@ const history = new Subject({
     }
 }
 const lms = new LMS();
-lms.add(history);
+// lms.add(history);
+// console.log(history.id)
 // console.log(lms)
 // console.log(lms.readAll());
 // console.log(lms.verify(history))

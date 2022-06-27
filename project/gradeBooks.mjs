@@ -1,5 +1,5 @@
 import { teacherId } from "./teacher.mjs"
-class GradeBooks {
+export class GradeBooks {
     map = new Map()
     addRecord(id, record) {
         let arr = this.map.get(id)

@@ -1,4 +1,4 @@
-class Pupils{
+export class Pupils{
     pupilsDB = new Map()
     validatePupil(pupils){
         if (!pupils.hasOwnProperty("name") || typeof pupils.name.first !== "string") {
@@ -24,6 +24,7 @@ class Pupils{
     constructor(){
     }      
     add(pupils){
+        // this.validatePupil(pupils)
         const id = Math.floor(Math.random() * 12345678987654).toString()
         this.pupilsDB.set(id, pupils);
         return id
@@ -40,31 +41,35 @@ class Pupils{
         }
     }
     remove(id){
+        if(!arguments.length) throw new Error('no argument in read method')
         if (typeof id !== "string") {
             throw new TypeError("error: parameter is not string");
           }
-        if (!this.map.has(id)) {
-            throw new TypeError("id is not exist or invalid");
-          }
         this.pupilsDB.delete(id)
     }
-    update(id, objUpdate){
-        if (id === undefined || objUpdate === undefined) {
+    update(id, updatedProfile) {
+        if (id === undefined || updatedProfile === undefined) {
             throw new TypeError("error: two parameters are required");
         }
         if (typeof id !== "string") {
             throw new TypeError("error: first parameter is not string");
         }
-        if(!this.pupilsDB.has(id)){
+        if (!this.pupilsDB.has(id)) {
             throw new Error("warnnig message")
         }
-        let arr = this.pupilsDB.get(id)
-        arr = {...arr, ...objUpdate}
-        this.pupilsDB.set(id, objUpdate)
-        return id
+        const foundGroup = this.read(id);
+        delete foundGroup.id;
+        this.pupilsDB.set(id, {
+            ...foundGroup,
+            ...updatedProfile
+        });
     }
 }
 const pupils = new Pupils();
-const pupil = pupils.add({name: "luka", age: 19, country: "GE"});
-console.log(pupils)
-
+// const pupilId = pupils.add({name: "luka", age: 19, country: "GE"});
+// console.log(pupils)
+// const pupilId2 = pupils.update(pupilId, {name: "mgeli", age: 30, sex: "male"})
+// console.log(pupils)
+// console.log(pupils.read(pupilId));
+// pupils.remove(pupilId)
+// console.log(pupils)
