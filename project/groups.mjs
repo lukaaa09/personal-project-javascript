@@ -46,7 +46,7 @@ export class Groups {
         if(typeof id !== 'string'){
             throw new Error("id is reuired and should be a string")
         }else{
-            return {id, ...this.#groups.get(id)}
+            return {id, ...this.groups.get(id)}
         }
     }
     readAll(){
@@ -54,5 +54,10 @@ export class Groups {
         return [...this.groups.values()];
     }
 }
-const groups = new Groups()
-const groupId = groups.addPupil()
+const groups = new Groups();
+ const groupID = groups.add(224);
+ groups.addPupil(groupID, pupils.read('0'));
+ groups.addPupil(groupID, pupils.read('1'));
+ groups.update('0', {
+     room: 237
+   });

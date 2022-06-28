@@ -19,6 +19,12 @@ export class Pupils{
         if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "string") {
             throw new TypeError("sex should be a string which will be male or famle field")
         }
+        if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "male") {
+            throw new TypeError("sex should be a string which will be male or famle field")
+        }
+        if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "female") {
+            throw new TypeError("sex should be a string which will be male or famle field")
+        }
         
     }
     constructor(){
@@ -57,6 +63,10 @@ export class Pupils{
         if (!this.pupilsDB.has(id)) {
             throw new Error("warnnig message")
         }
+        if (typeof updatedProfile !== "object" || Array.isArray(updatedProfile)) {
+            throw new TypeError("error: second parameter is not object");
+          }
+      
         const foundGroup = this.read(id);
         delete foundGroup.id;
         this.pupilsDB.set(id, {

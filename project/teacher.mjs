@@ -25,6 +25,12 @@ export class Teachers {
         if (!teacher.hasOwnProperty("sex") || typeof teacher.sex !== "string") {
             throw new TypeError("name should be a string")
         }
+        if (!pupils.hasOwnProperty("sex") || typeof teacher.sex !== "male") {
+            throw new TypeError("sex should be a string which will be male or famle field")
+        }
+        if (!pupils.hasOwnProperty("sex") || typeof teacher.sex !== "female") {
+            throw new TypeError("sex should be a string which will be male or famle field")
+        }
         if (!teacher.hasOwnProperty("subjects") || typeof teacher.subject[0].subjects !== "string") {
             throw new TypeError("subject should be a string")
         }
@@ -66,6 +72,10 @@ export class Teachers {
         if (typeof id !== "string") {
             throw new TypeError("error: first parameter is not string");
         }
+        if (typeof updatedProfile !== "object" || Array.isArray(updatedProfile)) {
+            throw new TypeError("error: second parameter is not object");
+          }
+      
         const foundGroup = this.read(id);
         delete foundGroup.id;
         this.map.set(id, {
