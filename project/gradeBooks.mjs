@@ -1,12 +1,12 @@
 // import { teacherId } from "./teacher.mjs"
 export class GradeBooks {
-    constructor(groups, teacher, lms){
+    constructor(groups, teacher, lms) {
         this.groups = groups
         this.teacher = teacher
         this.lms = lms
     }
     map = new Map()
-    add(groupId){
+    add(groupId) {
         // const id = Math.floor(Math.random() * 12345678987654).toString()
         this.map.set(groupId, []);
         return groupId
@@ -30,7 +30,7 @@ export class GradeBooks {
         let arr = this.map.get(id)
         if (arr) {
             this.map.set(id, [...arr, record]);
-        }else{
+        } else {
             this.map.set(id, [record]);
         }
         return id
@@ -38,8 +38,13 @@ export class GradeBooks {
     getRecord(data) {
         console.log(this.teacher)
         console.log(data)
-        let teacherName = this.teacher[data.teacherId].name.first + " " + this.teacher[data.teacherId].name.last;
+        let teacherName;
+        this.teacher.forEach((singleTeacher) => {
+            if (singleTeacher.id === data.teacherId) {
+                teacherName = singleTeacher.name.first + " " + singleTeacher.name.last;
 
+            }
+        })
         let subjectName = '';
         this.lms.forEach(value => {
             if (value.id === data.subjectId) {
@@ -88,7 +93,7 @@ export class GradeBooks {
     }
     readAll(gradeBookId) {
         if (!this.map.has(gradeBookId)) {
-            throw new Error('');
+            throw new Error('warning message');
         }
         const data = this.map.get(gradeBookId);
         return [...data];

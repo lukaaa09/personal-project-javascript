@@ -33,7 +33,7 @@ export class Pupils{
         // this.validatePupil(pupils)
         const id = Math.floor(Math.random() * 12345678987654).toString()
         this.pupilsDB.set(id, pupils);
-        return id
+        return {id, ...this.pupilsDB.get(id)}
         
     }     
     read(id){
@@ -43,7 +43,7 @@ export class Pupils{
          if(typeof id !== 'string'){
             throw new Error("id is reuired and should be a string")
         }else{
-            return {id: "0", ...this.pupilsDB.get(id)}
+            return {id, ...this.pupilsDB.get(id)}
         }
     }
     readAll(){
@@ -74,6 +74,7 @@ export class Pupils{
         const foundGroup = this.read(id);
         delete foundGroup.id;
         this.pupilsDB.set(id, {
+            id,
             ...foundGroup,
             ...updatedProfile
         });

@@ -8,7 +8,7 @@ export class Teachers {
             throw new TypeError("surname should be a string")
         }
         if (!teacher.hasOwnProperty("dateOfBirth") && typeof teacher.dateOfBirth !== "string") {
-            throw new TypeError("dateofBirth should be a string")
+            throw new TypeError("warning message")
         }
         if (!teacher.hasOwnProperty("emails") || typeof teacher.emails[0].email !== "string") {
             throw new TypeError("emails should be a string")
@@ -31,7 +31,7 @@ export class Teachers {
         if (!pupils.hasOwnProperty("sex") || typeof teacher.sex !== "female") {
             throw new TypeError("sex should be a string which will be male or famle field")
         }
-        if (!teacher.hasOwnProperty("subjects") || typeof teacher.subject[0].subjects !== "string") {
+        if (!teacher.hasOwnProperty("subjects") ) {
             throw new TypeError("subject should be a string")
         }
         if (teacher.hasOwnProperty("description") && typeof teacher.description !== 'string') {
@@ -84,7 +84,7 @@ export class Teachers {
         const foundGroup = this.read(id);
         delete foundGroup.id;
         this.map.set(id, {
-            id: '0',
+            id,
             ...foundGroup,
             ...updatedProfile
         });
