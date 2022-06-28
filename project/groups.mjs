@@ -11,6 +11,7 @@ export class Groups {
         if(!this.groups.has(roomId)){
             throw new Error("warning message");
         }
+        console.log(pupil)
         const room = this.groups.get(roomId);
         room.pupils.push(pupil);
         return room;
@@ -54,10 +55,10 @@ export class Groups {
         return [...this.groups.values()];
     }
 }
-const groups = new Groups();
- const groupID = groups.add(224);
- groups.addPupil(groupID, pupils.read('0'));
- groups.addPupil(groupID, pupils.read('1'));
- groups.update('0', {
-     room: 237
-   });
+// const groups = new Groups();
+// const groupID = groups.add(224);
+//  groups.addPupil(groupID, pupils.read('0'));
+//  groups.addPupil(groupID, pupils.read('1'));
+//  groups.update('0', {
+//      room: 237
+//    });

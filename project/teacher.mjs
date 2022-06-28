@@ -43,7 +43,7 @@ export class Teachers {
     add(teacher) {
         // this.validateTeacher(teacher)
         const id = Math.floor(Math.random() * 12345678987654).toString()
-        this.map.set(id, teacher);
+        this.map.set(id, {id, ...teacher});
         return id
     }
     read(id) {
@@ -55,6 +55,11 @@ export class Teachers {
         } else {
             return { id, ...this.map.get(id) }
         }
+    }
+    readAll(){
+        if(arguments.length) throw new Error('argument was passed')
+        console.log(this.map.values())
+        return [...this.map.values()];
     }
     remove(id) {
         if (typeof id !== "string") {
@@ -79,9 +84,11 @@ export class Teachers {
         const foundGroup = this.read(id);
         delete foundGroup.id;
         this.map.set(id, {
+            id: '0',
             ...foundGroup,
             ...updatedProfile
         });
+        
     }
 }
 const teachers = new Teachers()

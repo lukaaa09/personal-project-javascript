@@ -43,8 +43,12 @@ export class Pupils{
          if(typeof id !== 'string'){
             throw new Error("id is reuired and should be a string")
         }else{
-            return {id, ...this.pupilsDB.get(id)}
+            return {id: "0", ...this.pupilsDB.get(id)}
         }
+    }
+    readAll(){
+        if(arguments.length) throw new Error('argument was passed')
+        return [...this.pupilsDB.values()];
     }
     remove(id){
         if(!arguments.length) throw new Error('no argument in read method')

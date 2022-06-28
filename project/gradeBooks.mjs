@@ -6,10 +6,10 @@ export class GradeBooks {
         this.lms = lms
     }
     map = new Map()
-    add(gradebooks){
-        const id = Math.floor(Math.random() * 12345678987654).toString()
-        this.map.set(id, gradebooks);
-        return id
+    add(groupId){
+        // const id = Math.floor(Math.random() * 12345678987654).toString()
+        this.map.set(groupId, []);
+        return groupId
     }
     addRecord(id, record) {
         // if(!record.hasOwnProperty('pupilId')){
@@ -32,12 +32,14 @@ export class GradeBooks {
             this.map.set(id, [...arr, record]);
         }else{
             this.map.set(id, [record]);
-
         }
         return id
     }
     getRecord(data) {
+        console.log(this.teacher)
+        console.log(data)
         let teacherName = this.teacher[data.teacherId].name.first + " " + this.teacher[data.teacherId].name.last;
+
         let subjectName = '';
         this.lms.forEach(value => {
             if (value.id === data.subjectId) {
@@ -53,6 +55,8 @@ export class GradeBooks {
     }
     getName(data) {
         let pupilName = '';
+        console.log(this.groups)
+        console.log(data)
         this.groups.forEach(value => {
             value.pupils.forEach(pupil => {
                 if (data.pupilId === pupil.id && !pupilName) {
@@ -93,26 +97,26 @@ export class GradeBooks {
         this.map.clear();
     }
 }
-const gradebooks = new GradeBooks(groups.readAll(), teachers.readAll(), lms.readAll());
- const gradeBooksId = gradebooks.add('0');
- console.log(gradeBooksId);
- const record_1 = {
-   pupilId: '0',
-   teacherId: '0',
-   subjectId: history.id,
-   lesson: 1,
-   mark: 9
- };
- const record_2 = {
-   pupilId: '1',
-   teacherId: '2',
-   subjectId: math.id,
-   lesson: 1,
-   mark: 9
- };
- gradebooks.addRecord(gradeBooksId, record_1);
- gradebooks.addRecord(gradeBooksId, record_2);
- console.log(gradebooks.read(gradeBooksId, pupil1));
- console.log(gradebooks.readAll(gradeBooksId));
+// const gradebooks = new GradeBooks(groups.readAll(), teachers.readAll(), lms.readAll());
+//  const gradeBooksId = gradebooks.add('0');
+//  console.log(gradeBooksId);
+//  const record_1 = {
+//    pupilId: '0',
+//    teacherId: '0',
+//    subjectId: history.id,
+//    lesson: 1,
+//    mark: 9
+//  };
+//  const record_2 = {
+//    pupilId: '1',
+//    teacherId: '2',
+//    subjectId: math.id,
+//    lesson: 1,
+//    mark: 9
+//  };
+//  gradebooks.addRecord(gradeBooksId, record_1);
+//  gradebooks.addRecord(gradeBooksId, record_2);
+//  console.log(gradebooks.read(gradeBooksId, pupil1));
+//  console.log(gradebooks.readAll(gradeBooksId));
 
 
