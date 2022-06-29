@@ -7,30 +7,28 @@ export class Pupils{
         if (!pupils.hasOwnProperty("name") || typeof pupils.name.last !== "string") {
             throw new TypeError("pupil hasn't property name or surname isn't a string")
         }    
-        if(!pupils.hasOwnProperty("dateOfBirth") || typeof pupils.dateOfBirt !== 'string'){
+        if(!pupils.hasOwnProperty("dateOfBirth") && typeof pupils.dateOfBirth !== 'string'
+        && /^\d{2}([./-])\d{2}\1\d{4}$/.test(pupils.dateOfBirth)){
             throw new TypeError("dateofBirth should be a string")
         }
-        if (!pupils.hasOwnProperty("emails") || typeof pupils.emails[0].email !== "string") {
+        if (!pupils.hasOwnProperty("phones") || typeof pupils.phones[0].phone !== "string") {
             throw new TypeError("emails should be a string")
         }
-        if (!pupils.hasOwnProperty("emails") || typeof pupils.emails[0].primary !== "boolean") {
+        if (!pupils.hasOwnProperty("phones") || typeof pupils.phones[0].primary !== "boolean") {
             throw new TypeError("primary should be a boolean")
         }
         if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "string") {
             throw new TypeError("sex should be a string which will be male or famle field")
         }
-        if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "male") {
-            throw new TypeError("sex should be a string which will be male or famle field")
-        }
-        if (!pupils.hasOwnProperty("sex") || typeof pupils.sex !== "female") {
-            throw new TypeError("sex should be a string which will be male or famle field")
+        if (!pupils.hasOwnProperty("sex") || pupils.sex !== "male") {
+            throw new TypeError("sex should be a string which will be male or female field")
         }
         
     }
     constructor(){
     }      
     add(pupils){
-        // this.validatePupil(pupils)
+        this.validatePupil(pupils)
         const id = Math.floor(Math.random() * 12345678987654).toString()
         this.pupilsDB.set(id, pupils);
         return {id, ...this.pupilsDB.get(id)}

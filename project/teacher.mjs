@@ -7,7 +7,8 @@ export class Teachers {
         if (!teacher.hasOwnProperty("name") || typeof teacher.name.last !== "string") {
             throw new TypeError("surname should be a string")
         }
-        if (!teacher.hasOwnProperty("dateOfBirth") && typeof teacher.dateOfBirth !== "string") {
+        if (!teacher.hasOwnProperty("dateOfBirth") && typeof teacher.dateOfBirth !== "string"
+          && /^\d{2}([./-])\d{2}\1\d{4}$/.test(teacher.dateOfBirth)) {
             throw new TypeError("warning message")
         }
         if (!teacher.hasOwnProperty("emails") || typeof teacher.emails[0].email !== "string") {
@@ -25,13 +26,10 @@ export class Teachers {
         if (!teacher.hasOwnProperty("sex") || typeof teacher.sex !== "string") {
             throw new TypeError("name should be a string")
         }
-        if (!pupils.hasOwnProperty("sex") || typeof teacher.sex !== "male") {
+        if (!teacher.hasOwnProperty("sex") || teacher.sex !== "male") {
             throw new TypeError("sex should be a string which will be male or famle field")
         }
-        if (!pupils.hasOwnProperty("sex") || typeof teacher.sex !== "female") {
-            throw new TypeError("sex should be a string which will be male or famle field")
-        }
-        if (!teacher.hasOwnProperty("subjects") ) {
+        if (!teacher.hasOwnProperty("subjects")) {
             throw new TypeError("subject should be a string")
         }
         if (teacher.hasOwnProperty("description") && typeof teacher.description !== 'string') {
@@ -41,9 +39,9 @@ export class Teachers {
     constructor() {
     }
     add(teacher) {
-        // this.validateTeacher(teacher)
+        this.validateTeacher(teacher)
         const id = Math.floor(Math.random() * 12345678987654).toString()
-        this.map.set(id, {id, ...teacher});
+        this.map.set(id, { id, ...teacher });
         return id
     }
     read(id) {
@@ -56,8 +54,8 @@ export class Teachers {
             return { id, ...this.map.get(id) }
         }
     }
-    readAll(){
-        if(arguments.length) throw new Error('argument was passed')
+    readAll() {
+        if (arguments.length) throw new Error('argument was passed')
         console.log(this.map.values())
         return [...this.map.values()];
     }
@@ -79,8 +77,8 @@ export class Teachers {
         }
         if (typeof updatedProfile !== "object" || Array.isArray(updatedProfile)) {
             throw new TypeError("error: second parameter is not object");
-          }
-      
+        }
+
         const foundGroup = this.read(id);
         delete foundGroup.id;
         this.map.set(id, {
@@ -88,7 +86,7 @@ export class Teachers {
             ...foundGroup,
             ...updatedProfile
         });
-        
+
     }
 }
 const teachers = new Teachers()

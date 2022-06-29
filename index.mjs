@@ -26,24 +26,43 @@ console.log(lms)
 
 const teachers = new Teachers()
 console.log(teachers)
-const teacherId = teachers.add({ name:{ first: 'masw', last: "rameee" }, dateOfBirth:"luka", phones: [{phone: '577239116', primary: true}],
- emails: [{email: "kurtanidzeluka@gmail.com", primary: true}], sex: "male", subjects: [{subject: 'history'}] });
-const teacherId3 = teachers.add({ name:{ first: 'sxvaaa', last: "teksti" }, phone: 1234 });
+const teacherId = teachers.add({
+    name: { first: 'luka', last: "kurtanidze" }, dateOfBirth: "'09.05.2002'", phones: [{ phone: '577239116', primary: true }],
+    emails: [{ email: "kurtanidzeluka@gmail.com", primary: true }], sex: "male", subjects: [{ subject: 'history' }]
+});
+console.log(teachers)
+const teacherId3 = teachers.add({
+    name: { first: 'bacho', last: "kurtanidze" }, dateOfBirth: "20.10.18", phones: [{ phone: '5563434316', primary: true }],
+    emails: [{ email: "kurtanimil.com", primary: true }], sex: "male", subjects: [{ subject: 'history' }]
+});
 console.log(teachers)
 console.log(teachers.read(teacherId));
-const teacherId2 = teachers.update(teacherId, { name: { first: 'luka', last: "kurtanidze" }, age: 24 })
+const teacherId2 = teachers.update(teacherId, {
+    name: { first: 'mgeli', last: "random" }, dateOfBirth: "09.21.21", age: "tooo old for wolf", phones: [{ phone: '88999999', primary: true }],
+    emails: [{ email: "kurtanimdaddsadadsil.com", primary: true }], sex: "male", subjects: [{ subject: 'history' }]
+})
 console.log(teachers)
 // teachers.remove(teacherId)
-console.log(teachers)
+// console.log(teachers)
 
 const pupils = new Pupils();
-const pupil = pupils.add({ name: { first: 'luka', last: "kurtanidze" }, age: 80, country: "eu" });
-const pupil4 = pupils.add({ name: { first: 'mosw', last: "random" }, age: 10, country: "dwdw" });
+const pupil = pupils.add({
+    name: { first: 'luka', last: "kurtanidze" }, dateOfBirth: '09.09.02', phones: [{
+        phone: "4749848347287",
+        primary: true
+    }], sex: "male", age: 80, country: "eu"
+});
+const pupil4 = pupils.add({
+    name: { first: 'TAA', last: "alexander-arnold" }, dateOfBirth: '09.12.31', phones: [{
+        phone: "111122222",
+        primary: true
+    }], sex: "male", age: 23, country: "dssssssu"
+});
 console.log(pupils)
-const pupil2 = pupils.update(pupil.id, { name: { first: 'mgeli', last: "kurtanidze" }, age: 30, sex: "male" })
+const pupil2 = pupils.update(pupil.id, { name: { first: 'lukachoo', last: "kurtanidze" }, age: 30, sex: "male" })
 console.log(pupils)
 // pupils.remove(pupilId)
-console.log(pupils)
+// console.log(pupils)
 
 const groups = new Groups();
 const groupID = groups.add(224);
