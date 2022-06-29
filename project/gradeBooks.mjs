@@ -12,21 +12,21 @@ export class GradeBooks {
         return groupId
     }
     addRecord(id, record) {
-        // if(!record.hasOwnProperty('pupilId')){
-        //     throw Error('pupilid field is required )
-        // }
-        // if(!record.hasOwnProperty('teacherId') ){
-        //     throw Error('teacherid field is required )
-        // }
-        // if(!record.hasOwnProperty('subjectId') ){
-        //     throw Error('subjectid field is required )
-        // }
-        // if(!record.hasOwnProperty('lesson') ){
-        //     throw Error('lesson field is required )
-        // }
-        // if(!record.hasOwnProperty('mark') ){
-        //     throw Error('mark field is required )
-        // }
+        if(!record.hasOwnProperty('pupilId')){
+            throw new Error('pupilid field is required')
+        }
+        if(!record.hasOwnProperty('teacherId') ){
+            throw new Error('teacherid field is required')
+        }
+        if(!record.hasOwnProperty('subjectId') ){
+            throw new Error('subjectid field is required')
+        }
+        if(!record.hasOwnProperty('lesson') ){
+            throw new Error('lesson field is required')
+        }
+        if(!record.hasOwnProperty('mark') ){
+            throw new Error('mark field is required')
+        }
         let arr = this.map.get(id)
         if (arr) {
             this.map.set(id, [...arr, record]);
