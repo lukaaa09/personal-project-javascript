@@ -3,12 +3,11 @@ import { Lms } from "./lms";
 import { Teachers } from "./teachers";
 import { Pupils } from "./pupils";
 import { Groups } from "./groups";
-
+import { GradeBooks } from "./gradebooks";
 const history = new Subject({
     tittle: 'History',
     lessons: 24
 });
-
 const lms = new Lms();
 lms.add(history);
 console.log(history.id)
@@ -86,3 +85,18 @@ groups.update(groupID, {
     room: 237
 });
 console.log(groups)
+
+const gradebooks = new GradeBooks(groups.readAll(), teachers.readAll(), lms.readAll());
+ const gradeBooksId = gradebooks.add('0');
+ console.log(gradeBooksId);
+ const record_1 = {
+   pupilId: '0',
+   teacherId: teacherId,
+   subjectId: history.id,
+   lessons: 1,
+   mark: 9
+ };
+
+ gradebooks.addRecord(gradeBooksId, record_1);
+ console.log(gradebooks.read(gradeBooksId, pupil_1));
+ console.log(gradebooks.readAll(gradeBooksId));

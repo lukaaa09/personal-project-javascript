@@ -5,6 +5,7 @@ const lms_2 = require("./lms");
 const teachers_1 = require("./teachers");
 const pupils_1 = require("./pupils");
 const groups_1 = require("./groups");
+const gradebooks_1 = require("./gradebooks");
 const history = new lms_1.Subject({
     tittle: 'History',
     lessons: 24
@@ -81,3 +82,16 @@ groups.update(groupID, {
     room: 237
 });
 console.log(groups);
+const gradebooks = new gradebooks_1.GradeBooks(groups.readAll(), teachers.readAll(), lms.readAll());
+const gradeBooksId = gradebooks.add('0');
+console.log(gradeBooksId);
+const record_1 = {
+    pupilId: '0',
+    teacherId: teacherId,
+    subjectId: history.id,
+    lessons: 1,
+    mark: 9
+};
+gradebooks.addRecord(gradeBooksId, record_1);
+console.log(gradebooks.read(gradeBooksId, pupil_1));
+console.log(gradebooks.readAll(gradeBooksId));

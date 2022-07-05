@@ -7,6 +7,9 @@ class Subject {
         }
         this.id = Math.floor(Math.random() * Date.now()).toString();
     }
+    id(){
+        return this.id
+    }
 }
 
     const history = new Subject({
