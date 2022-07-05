@@ -36,7 +36,7 @@ export class Lms {
         }
     }
 
-    add(subject: SubjectInt){
+    add(subject: SubjectInt): void{
         this.validateSub(subject)
         this.lms.set(subject.id, subject);        
     }
